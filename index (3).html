@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sigilism Art by L — An Art Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,400;1,9..144,500&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bone:   #201E1B;
+    --sand:   #2A2723;
+    --taupe:  #38352E;
+    --clay:   #948F86;
+    --charcoal:#C4C0B7;
+    --ink:    #F4F2EC;
+    --thread: linear-gradient(135deg, var(--taupe), var(--clay), var(--ink));
+    --thread-soft: linear-gradient(135deg, var(--sand), var(--clay));
+    --maxw: 1180px;
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:linear-gradient(180deg,
+      var(--bone) 0%,
+      #171512 30%,
+      #100F0D 60%,
+      #0A0908 100%);
+    color:var(--ink);
+    font-family:'Inter', sans-serif;
+    font-weight:400;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit; text-decoration:none;}
+
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 32px;}
+
+  h1,h2,h3{font-family:'Fraunces', serif; font-weight:400; letter-spacing:-0.01em;}
+
+  .label{
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--clay);
+  }
+
+  /* ---------- unbroken line thread ---------- */
+  .thread-rule{
+    height:1px;
+    width:100%;
+    background:var(--thread);
+    border:none;
+    opacity:0.6;
+  }
+
+  /* ---------- nav ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(32,30,27,0.86);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--taupe);
+  }
+  nav.wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    padding-top:18px; padding-bottom:18px;
+  }
+  .brand{display:flex; align-items:center; gap:10px;}
+  .brand svg{width:26px; height:26px;}
+  .brand-name{font-family:'Fraunces', serif; font-style:italic; font-size:19px; letter-spacing:0.01em;}
+  .navlinks{display:flex; gap:34px; font-size:13px;}
+  .navlinks a{
+    position:relative; padding-bottom:3px; color:var(--charcoal);
+    transition:color 0.25s ease;
+  }
+  .navlinks a::after{
+    content:''; position:absolute; left:0; right:0; bottom:0; height:1px;
+    background:var(--thread); transform:scaleX(0); transform-origin:right;
+    transition:transform 0.35s ease;
+  }
+  .navlinks a:hover{color:var(--ink);}
+  .navlinks a:hover::after{transform:scaleX(1); transform-origin:left;}
+  .navlinks a.active{color:var(--ink);}
+  .navlinks a.active::after{transform:scaleX(1); transform-origin:left;}
+  .navlinks{align-items:center;}
+  @media (max-width:720px){ .navlinks{display:none;} }
+
+  /* ---------- shared subpage header ---------- */
+  .page-head{padding:80px 0 48px;}
+  .page-head .label{margin-bottom:18px;}
+  .page-head h1{font-size:clamp(36px,5.5vw,56px); font-style:italic; font-weight:400;}
+  .page-head p{margin-top:20px; max-width:56ch; color:var(--charcoal); font-size:16px;}
+
+  /* ---------- shop grid ---------- */
+  .shop-grid{
+    display:grid; grid-template-columns:repeat(3, 1fr); gap:2px;
+    background:var(--taupe); border:1px solid var(--taupe);
+  }
+  @media (max-width:900px){ .shop-grid{grid-template-columns:repeat(2,1fr);} }
+  @media (max-width:560px){ .shop-grid{grid-template-columns:1fr;} }
+  .shop-item{
+    background:var(--bone); padding:28px 24px 24px;
+    display:flex; flex-direction:column; transition:background 0.4s ease;
+  }
+  .shop-item:hover{background:var(--sand);}
+  .shop-item .piece-art{margin-bottom:18px;}
+  .shop-item h3{font-size:19px; font-weight:400; margin-bottom:6px;}
+  .shop-item .meta{font-family:'JetBrains Mono', monospace; font-size:11px; color:var(--clay); margin-bottom:16px;}
+  .shop-item .price-row{
+    margin-top:auto; display:flex; align-items:center; justify-content:space-between;
+    padding-top:14px; border-top:1px solid var(--taupe);
+  }
+  .price{font-family:'JetBrains Mono', monospace; font-size:14px; color:var(--ink);}
+  .buy-link{
+    font-family:'JetBrains Mono', monospace; font-size:11px; letter-spacing:0.06em; text-transform:uppercase;
+    color:var(--charcoal); transition:color 0.25s ease;
+  }
+  .buy-link:hover{color:var(--ink);}
+
+  /* ---------- process / about extras ---------- */
+  .process-row{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:32px; margin-top:56px;
+  }
+  @media (max-width:760px){ .process-row{grid-template-columns:1fr;} }
+  .process-step .label{margin-bottom:10px;}
+  .process-step h3{font-size:19px; font-weight:400; margin-bottom:8px;}
+  .process-step p{font-size:14px; color:var(--charcoal);}
+
+  /* ---------- hero ---------- */
+  .hero{
+    padding:96px 0 80px;
+    display:grid; grid-template-columns:1.1fr 0.9fr; gap:48px; align-items:center;
+  }
+  @media (max-width:860px){ .hero{grid-template-columns:1fr; padding:56px 0 48px;} }
+
+  .hero-eyebrow{margin-bottom:22px;}
+  .hero h1{
+    font-size:clamp(40px, 6vw, 68px);
+    line-height:1.04;
+    font-weight:400;
+  }
+  .hero h1 em{
+    font-style:italic; font-weight:400;
+    background:var(--thread);
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .hero p{
+    margin-top:24px; max-width:44ch;
+    color:var(--charcoal); font-size:16px;
+  }
+  .hero-cta{
+    margin-top:36px; display:flex; gap:18px; align-items:center;
+  }
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:13px 26px; border:1px solid var(--ink);
+    font-family:'JetBrains Mono', monospace; font-size:12px; letter-spacing:0.08em; text-transform:uppercase;
+    border-radius:999px; transition:all 0.3s ease;
+  }
+  .btn:hover{background:var(--ink); color:var(--bone);}
+  .btn-ghost{border-color:var(--clay); color:var(--charcoal);}
+  .btn-ghost:hover{background:transparent; border-color:var(--ink); color:var(--ink);}
+
+  .hero-mark{
+    display:flex; align-items:center; justify-content:center;
+    aspect-ratio:1; position:relative;
+  }
+  .hero-mark svg{width:100%; height:100%; max-width:420px;}
+  .hero-mark img{
+    width:100%; height:100%; max-width:440px; object-fit:contain;
+    opacity:0; transform:translateY(16px) scale(0.97);
+    filter:drop-shadow(0 0 40px rgba(244,242,236,0.08));
+    animation:reveal 1.4s cubic-bezier(0.16,1,0.3,1) forwards 0.2s;
+  }
+  @keyframes reveal{ to{ opacity:1; transform:translateY(0) scale(1); } }
+  .hero-mark .draw-path{
+    stroke-dasharray:900;
+    stroke-dashoffset:900;
+    animation:draw 2.6s ease forwards 0.3s;
+  }
+  @keyframes draw{ to{ stroke-dashoffset:0; } }
+  @media (prefers-reduced-motion:reduce){
+    .hero-mark .draw-path{ animation:none; stroke-dashoffset:0; }
+    .hero-mark img{ animation:none; opacity:1; transform:none; }
+  }
+
+  /* ---------- section headings ---------- */
+  section{padding:64px 0;}
+  .section-head{
+    display:flex; align-items:baseline; justify-content:space-between;
+    margin-bottom:44px; gap:24px; flex-wrap:wrap;
+  }
+  .section-head h2{font-size:clamp(28px,4vw,38px); font-style:italic;}
+  .section-head .count{font-family:'JetBrains Mono', monospace; font-size:12px; color:var(--clay);}
+
+  /* ---------- gallery ---------- */
+  .gallery{
+    display:grid; grid-template-columns:repeat(3, 1fr); gap:2px;
+    background:var(--taupe);
+    border:1px solid var(--taupe);
+  }
+  @media (max-width:900px){ .gallery{grid-template-columns:repeat(2,1fr);} }
+  @media (max-width:560px){ .gallery{grid-template-columns:1fr;} }
+
+  .piece{
+    background:var(--bone);
+    padding:30px 26px 26px;
+    display:flex; flex-direction:column;
+    position:relative;
+    transition:background 0.4s ease;
+  }
+  .piece:hover{background:var(--sand);}
+  .piece-art{
+    aspect-ratio:1; display:flex; align-items:center; justify-content:center;
+    margin-bottom:20px; position:relative;
+  }
+  .piece-art svg{width:78%; height:78%;}
+  .piece-art img{width:100%; height:100%; object-fit:cover; object-position:center top;}
+  .detail-thumbs{display:flex; gap:6px; margin:-8px 0 16px;}
+  .detail-thumbs img{
+    width:15%; aspect-ratio:1; object-fit:cover; object-position:center top;
+    border:1px solid var(--taupe); opacity:0.6; cursor:pointer;
+    transition:opacity 0.25s ease, border-color 0.25s ease;
+  }
+  .detail-thumbs img:hover{opacity:1; border-color:var(--ink);}
+  .detail-label{
+    font-family:'JetBrains Mono', monospace; font-size:10px; letter-spacing:0.08em;
+    text-transform:uppercase; color:var(--clay); margin-bottom:8px;
+  }
+  .piece-index{
+    position:absolute; top:0; left:0;
+    font-family:'JetBrains Mono', monospace; font-size:11px; color:var(--clay);
+  }
+  .piece h3{font-size:20px; font-weight:400; margin-bottom:4px;}
+  .piece .meta{font-family:'JetBrains Mono', monospace; font-size:11px; color:var(--clay); letter-spacing:0.05em; margin-bottom:14px;}
+  .listen{
+    margin-top:auto; display:flex; align-items:center; gap:10px;
+    font-family:'JetBrains Mono', monospace; font-size:11.5px; letter-spacing:0.06em;
+    text-transform:uppercase; color:var(--charcoal);
+    padding-top:14px; border-top:1px solid var(--taupe);
+  }
+  .listen svg{width:15px; height:15px; flex-shrink:0;}
+  .listen a{
+    display:flex; align-items:center; gap:8px;
+    transition:color 0.25s ease;
+  }
+  .listen a:hover{color:var(--ink);}
+  .listen .dur{margin-left:auto; color:var(--clay);}
+
+  /* ---------- about ---------- */
+  .about{
+    display:grid; grid-template-columns:0.8fr 1.2fr; gap:56px; align-items:start;
+  }
+  @media (max-width:800px){ .about{grid-template-columns:1fr; gap:32px;} }
+  .about-mark svg{width:100%; max-width:220px;}
+  .about-text p{color:var(--charcoal); margin-bottom:18px; max-width:60ch;}
+  .about-text p:first-of-type{font-size:19px; font-family:'Fraunces', serif; font-style:italic; color:var(--ink);}
+
+  /* ---------- meditations note ---------- */
+  .note{
+    background:var(--sand);
+    border-left:2px solid var(--clay);
+    padding:22px 28px;
+    font-size:14px; color:var(--charcoal);
+    margin-top:12px;
+  }
+  .note strong{color:var(--ink);}
+
+  /* ---------- footer ---------- */
+  footer{padding:56px 0 64px;}
+  .foot-row{
+    display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:20px;
+    padding-top:30px;
+  }
+  .foot-links{display:flex; gap:26px; font-size:13px;}
+  .foot-links a{color:var(--charcoal); transition:color 0.25s ease;}
+  .foot-links a:hover{color:var(--ink);}
+  footer .fine{font-family:'JetBrains Mono', monospace; font-size:11px; color:var(--clay); margin-top:26px;}
+
+
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <div class="brand">
+      <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="20" cy="20" r="12" stroke="#F4F2EC" stroke-width="1.4"/>
+        <line x1="20" y1="4" x2="20" y2="14" stroke="#F4F2EC" stroke-width="1.4"/>
+        <line x1="20" y1="26" x2="20" y2="36" stroke="#F4F2EC" stroke-width="1.4"/>
+        <circle cx="20" cy="20" r="2" fill="#F4F2EC"/>
+      </svg>
+      <span class="brand-name">Sigilism Art by L</span>
+    </div>
+    <div class="navlinks">
+      <a href="#work" class="active">Work</a>
+      <a href="about.html">Artist Statement</a>
+      <a href="shop.html">Shop</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+
+  <!-- ================= HERO ================= -->
+  <section class="hero wrap">
+    <div>
+      <div class="hero-eyebrow label">Ink marks on paper</div>
+      <h1>Drawn with <em>intention</em><br>&amp; ritual.</h1>
+      <p>A collection of artworks created through studying sigils, symbols, and neuroscience. Each piece is created with a meditation — recordings coming soon.</p>
+      <p style="margin-top:14px; font-size:14px; color:var(--clay);">Contact if interested in collecting a piece.</p>
+      <div class="hero-cta">
+        <a href="#work" class="btn">View the work</a>
+        <a href="contact.html" class="btn btn-ghost">Contact</a>
+      </div>
+    </div>
+    <div class="hero-mark">
+      <img src="hero-sigil.png" alt="Original sigil artwork — the site's signature mark">
+    </div>
+  </section>
+
+  <hr class="thread-rule">
+
+  <!-- ================= GALLERY ================= -->
+  <section id="work" class="wrap">
+    <div class="section-head">
+      <h2>Selected work</h2>
+      <span class="count">06 pieces — ink &amp; mixed media, 2025–2026</span>
+    </div>
+
+    <div class="gallery">
+
+      <!-- Piece 1 -->
+      <article class="piece">
+        <span class="piece-index">01</span>
+        <div class="piece-art">
+          <img src="portrait-of-existence.jpg" alt="Portrait of Existence — intricate black ink linework with dotted stippled patterns on white paper">
+        </div>
+        <h3>Portrait of Existence</h3>
+        <div class="meta">Ink on paper · 15×30in · 2026</div>
+      </article>
+
+      <!-- Piece 2 -->
+      <article class="piece">
+        <span class="piece-index">02</span>
+        <div class="piece-art">
+          <img id="alch-main" src="alchemization-full.jpg" alt="Alchemization — dense ink composition with celestial dot-work, gestural loops, a staircase, and a spiral, on white paper">
+        </div>
+        <div class="detail-label">Detail views</div>
+        <div class="detail-thumbs">
+          <img src="alchemization-detail-1.jpg" alt="Alchemization detail view 1" onclick="document.getElementById('alch-main').src=this.src">
+          <img src="alchemization-detail-2.jpg" alt="Alchemization detail view 2" onclick="document.getElementById('alch-main').src=this.src">
+          <img src="alchemization-detail-3.jpg" alt="Alchemization detail view 3" onclick="document.getElementById('alch-main').src=this.src">
+          <img src="alchemization-detail-4.jpg" alt="Alchemization detail view 4" onclick="document.getElementById('alch-main').src=this.src">
+          <img src="alchemization-detail-5.jpg" alt="Alchemization detail view 5" onclick="document.getElementById('alch-main').src=this.src">
+        </div>
+        <h3>Alchemization</h3>
+        <div class="meta">Ink on paper · 16×22in · 2026</div>
+      </article>
+
+      <!-- Piece 3 -->
+      <article class="piece">
+        <span class="piece-index">03</span>
+        <div class="piece-art">
+          <img src="stroke-of-lightning.jpg" alt="Stroke of Lightning — black ink and gold pen gestural mark on white watercolor paper">
+        </div>
+        <h3>Stroke of Lightning</h3>
+        <div class="meta">Ink &amp; pen on watercolor paper · 22×30in · 2026</div>
+      </article>
+
+      <!-- Piece 4 -->
+      <article class="piece">
+        <span class="piece-index">04</span>
+        <div class="piece-art">
+          <img src="protection.jpg" alt="Protection — white ink sigil of interlocking curved lines inside a dark inked circle with a stippled dot halo, on white paper">
+        </div>
+        <h3>Protection</h3>
+        <div class="meta">Ink on paper · 22×22in · 2025</div>
+      </article>
+
+      <!-- Piece 5 -->
+      <article class="piece">
+        <span class="piece-index">05</span>
+        <div class="piece-art">
+          <img id="fip-main" src="falling-into-place-full.jpg" alt="Falling into Place — metallic indigo ink drips falling toward geometric symbols and a flowing signature line, on white paper">
+        </div>
+        <div class="detail-label">Detail views</div>
+        <div class="detail-thumbs">
+          <img src="falling-into-place-detail-1.jpg" alt="Falling into Place detail view 1" onclick="document.getElementById('fip-main').src=this.src">
+          <img src="falling-into-place-detail-2.jpg" alt="Falling into Place detail view 2" onclick="document.getElementById('fip-main').src=this.src">
+        </div>
+        <h3>Falling into Place</h3>
+        <div class="meta">Ink on paper · 13×30in · 2026</div>
+      </article>
+
+      <!-- Piece 6 -->
+      <article class="piece">
+        <span class="piece-index">06</span>
+        <div class="piece-art">
+          <img src="balance-harmony.jpg" alt="Balance+Harmony — an oval watercolor wash in deep blues and violets, split by a gold and crimson seam, on white paper">
+        </div>
+        <h3>Balance+Harmony</h3>
+        <div class="meta">Ink &amp; watercolor on paper · 18×22in</div>
+      </article>
+
+    </div>
+  </section>
+
+  <hr class="thread-rule">
+  <!-- ================= FOOTER ================= -->
+  <footer id="contact" class="wrap">
+    <div class="foot-row">
+      <div class="brand">
+        <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="20" cy="20" r="12" stroke="#F4F2EC" stroke-width="1.4"/>
+          <line x1="20" y1="4" x2="20" y2="14" stroke="#F4F2EC" stroke-width="1.4"/>
+          <line x1="20" y1="26" x2="20" y2="36" stroke="#F4F2EC" stroke-width="1.4"/>
+          <circle cx="20" cy="20" r="2" fill="#F4F2EC"/>
+        </svg>
+        <span class="brand-name">Sigilism Art by L</span>
+      </div>
+      <div class="foot-links">
+        <a href="mailto:youremail@example.com">Email</a>
+        <a href="#">Instagram</a>
+        <a href="shop.html">Shop</a>
+      </div>
+    </div>
+    <div class="fine">© 2026 — replace with your name. Site drawn in one line, like the work.</div>
+  </footer>
+
+</main>
+
+</body>
+</html>
